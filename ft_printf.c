@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "printfLib/libft.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 void	putuint(unsigned int n, unsigned int *count)
@@ -78,11 +77,8 @@ int	ft_printf(const char *s, ...)
 	va_start (arg, s);
 	while (s[i] != 0)
 	{
-		if (s[i] == '%')
-		{
-			if (check_perc (&i, s, &arg, &count))
-				i++;
-		}
+		if (s[i] == '%' && check_perc (&i, s, &arg, &count))
+			i++;
 		else
 		{
 			ft_putchar_fd (s[i], 1);
@@ -96,6 +92,7 @@ int	ft_printf(const char *s, ...)
 
 // int main()
 // {
+// 	ft_printf (" %c %c %c %s %x", 'a', 'b', 'c', NULL, 76557);
 // 	printf ("OR:\n!%2lc!", (char)221);
 	// ft_printf ("MY:\n!%2lc!", (char)221);
 // 	int a;
