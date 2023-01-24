@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 #include "printfLib/libft.h"
 
 void	putlowhex_ptr(uintptr_t n, unsigned int *count)
