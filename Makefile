@@ -1,35 +1,32 @@
 NAME = libftprintf.a
 
-CC = gcc
+LIBNAME = printfLib
 
-CFLAGS = -c #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-LIBA = ./libft/libft.a
+LIBA = printfLib/libft.a
 
-LIB = make -C libft
-
-FILES = $(wildcard *.c)
+FILES = $(wildcard *.c);
 
 OBJ = $(FILES:.c=.o)
 
-all: libft $(NAME)
-	$(LIB); $(CC) -o main *.c $(NAME) $(LIBA); ./main.exe
+all: lib $(NAME)
+
+lib:
+	make -C $(LIBNAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
-
-$(OBJ): $(FILES)
-	$(CC) $(CFLAGS) $(FILES)
-
+	@ar rcs $(NAME) $(OBJ)
+	
 libfclean:
-	 $(LIB) fclean
+	make fclean -C $(LIBNAME)
 
 clean:
 	rm -f *.o
 
 fclean: libfclean clean
-	rm -f libftprintf.a *.exe *.out
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lib libfclean
