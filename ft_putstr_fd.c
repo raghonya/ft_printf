@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putpointer.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raghonya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 20:55:35 by raghonya          #+#    #+#             */
-/*   Updated: 2023/01/23 20:55:40 by raghonya         ###   ########.fr       */
+/*   Created: 2023/01/16 14:39:06 by raghonya          #+#    #+#             */
+/*   Updated: 2023/01/16 14:39:07 by raghonya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	putlowhex_ptr(uintptr_t n, unsigned int *count)
+void	ft_putstr_fd(char *s, int fd, unsigned int *count)
 {
-	if (n > 15)
-		putlowhex_ptr (n / 16, count);
-	ft_putchar_fd ("0123456789abcdef"[n % 16], STDOUT_FILENO);
-	*count += 1;
-}
-
-void	checkptr(uintptr_t n, unsigned int *count)
-{
-	write (STDOUT_FILENO, "0x", 2);
-	*count += 2;
-	putlowhex_ptr (n, count);
+	if (s == NULL)
+	{
+		write (fd, "(null)", 6);
+		*count += 6;
+		return ;
+	}
+	write (fd, s, ft_strlen (s));
+	*count += ft_strlen (s);
 }
