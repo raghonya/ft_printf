@@ -2,17 +2,25 @@ NAME = libftprintf.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = $(wildcard *.c)
+FILES = ft_printf.c \
+		ft_putchar_fd.c \
+		ft_putnbr_fd.c \
+		ft_putstr_fd.c \
+		ft_strlen.c \
+		putpointer.c
 
-OBJ = $(FILES:.c=.o)
+OBJS = $(FILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
-	
+$(NAME): $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+
+%.o: %.c Makefile ft_printf.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f *.o
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
